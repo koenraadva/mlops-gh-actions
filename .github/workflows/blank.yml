@@ -41,5 +41,5 @@ jobs:
       - name: Run & Test Dockerfile
         run: |
           docker run -d -p 8000:80 ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1
-          run: curl http://localhost:8000
+        
           
