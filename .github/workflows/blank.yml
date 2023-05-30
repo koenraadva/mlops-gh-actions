@@ -36,10 +36,10 @@ jobs:
           echo test, and deploy your project.
 
       - name: Build Dockerfile
-        run: docker build -t hello-world-nginx:v1 .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1 .
 
       - name: Run Dockerfile
-        run: docker run -d -p 80:80 hello-world-nginx:v1
+        run: docker run -d -p 80:80 ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1
 
       - name: Test Dockerfile
         run: curl http://localhost:80
