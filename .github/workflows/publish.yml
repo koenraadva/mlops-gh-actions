@@ -20,6 +20,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the nginx Docker image
         run: |
-          docker build . --tag ghcr.io/koenraadva/hello-world-nginx:latest
-          docker run ghcr.io/koenraadva/hello-world-nginx:latest
-          docker push ghcr.io/koenraadva/hello-world-nginx:latest
+          docker build . --tag ghcr.io/koenraadva/hello-world-nginx:v02
+          docker run ghcr.io/koenraadva/hello-world-nginx:v02
+          docker push ghcr.io/koenraadva/hello-world-nginx:v02
