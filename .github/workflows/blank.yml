@@ -35,14 +35,19 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-
+      
       - name: Build Dockerfile
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1 .
 
+      - name: Stop the container if running, otherwise ignore
+        run: docker stop gh-actions-test || true
+
+      - name: Remove the container if exists, otherwise ignore
+        run: docker rm gh-actions-test || true
+
       - name: Run & Test Dockerfile
         run: |
-          docker stop gh-actions-test
-          docker run -d -p 8000:80 -name gh-actions-test ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1
+          docker run -d -p 8000:80 --name gh-actions-test ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1
 
       # Install kubectl if required
       # - name: Install Kubectl
