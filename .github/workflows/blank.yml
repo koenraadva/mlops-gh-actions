@@ -47,7 +47,7 @@ jobs:
 
       - name: Run & Test Dockerfile
         run: |
-          docker run -d -p 8000:80 --name gh-actions-test ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx::${{ github.sha }}
+          docker run -d -p 8000:80 --name gh-actions-test ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:${{ github.sha }}
 
       # Install kubectl if required
       # - name: Install Kubectl
