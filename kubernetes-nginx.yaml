@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: gh-actions-test
-        image: ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1
+        image: koenraadva/hello-world-nginx:v1
         ports:
         - containerPort: 80
 ---
