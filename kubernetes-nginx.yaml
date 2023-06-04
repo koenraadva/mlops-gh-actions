@@ -1,0 +1,39 @@
+# Kubernetes deployment for nginx
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gh-actions-test
+  namespace: gh-actions-test
+  labels:
+    app: gh-actions-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gh-actions-test
+  template:
+    metadata:
+      labels:
+        app: gh-actions-test
+    spec:
+      containers:
+      - name: gh-actions-test
+        image: ${{ secrets.DOCKER_USERNAME }}/hello-world-nginx:v1
+        ports:
+        - containerPort: 80
+---
+# NodePort service for nginx
+apiVersion: v1
+kind: Service
+metadata:
+  name: gh-actions-test
+  namespace: gh-actions-test
+spec:
+  type: NodePort
+  selector:
+    app: gh-actions-test
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080

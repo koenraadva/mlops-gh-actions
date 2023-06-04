@@ -62,6 +62,12 @@ jobs:
         run: |
           kubectl get pods
           kubectl get services
-
+      - name: Create K8s namespace, if not exists
+        run: |
+          kubectl create namespace gh-actions-test || true
+      
+      - name: Deploy to K8s
+        run: |
+          kubectl apply -f kubernetes-nginx.yaml
         
           
