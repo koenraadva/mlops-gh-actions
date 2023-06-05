@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: "2.0"
+description: Sample Helm chart for Kubernetes
+maintainers:
+  - email: koenraad.van.acker@howest.be
+    name: koenraadva
+name: nginx
+version: v02

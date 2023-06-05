@@ -62,12 +62,20 @@ jobs:
         run: |
           kubectl get pods
           kubectl get services
-      - name: Create K8s namespace, if not exists
-        run: |
-          kubectl create namespace gh-actions-test || true
-      
-      - name: Deploy to K8s
-        run: |
-          kubectl apply -f kubernetes-nginx.yaml
-        
           
+      # - name: Create K8s namespace, if not exists
+      #   run: |
+      #     kubectl create namespace gh-actions-test || true
+      
+      # - name: Deploy to K8s
+      #   run: |
+      #     kubectl apply -f kubernetes-nginx.yaml
+      
+      - name: Helm test
+        run:  |
+          helm version
+
+      - name: Helm upgrade or install, and override values
+        run: |
+          helm upgrade --install gh-actions-test ./helm/nginx-v02 --namespace gh-actions-test --set image.repository=${{ secrets.DOCKER_USERNAME }}/hello-world-nginx --set image.tag=v02 --set service.type=NodePort --set service.port=80 --set service.nodePort=30080 --set ingress.enabled=true --set ingress.hosts[0]=gh-actions-test.local --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx --set ingress.annotations."cert-manager\.io/cluster-issuer"
+             
