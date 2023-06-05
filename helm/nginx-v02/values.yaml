@@ -1,3 +1,4 @@
 image:
   tag: v02
-  
+
+NodePort: 30080
