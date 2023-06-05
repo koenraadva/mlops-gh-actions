@@ -77,4 +77,4 @@ jobs:
 
       - name: Helm upgrade or install, and override values
         run: |
-          helm upgrade --install gh-actions-test ./helm/nginx-v02 --namespace gh-actions-test --set image.tag={{ github.sha }} --set service.nodePort=30082
+          helm upgrade --install gh-actions-test ./helm/nginx-v02 --namespace gh-actions-test --set image.tag=${{ github.sha }} --set service.nodePort=30082
