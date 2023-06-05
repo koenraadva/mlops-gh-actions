@@ -77,5 +77,5 @@ jobs:
 
       - name: Helm upgrade or install, and override values
         run: |
-          helm upgrade --install gh-actions-test ./helm/nginx-v02 --namespace gh-actions-test --set image.repository=${{ secrets.DOCKER_USERNAME }}/hello-world-nginx --set image.tag=v02 --set service.type=NodePort --set service.port=80 --set service.nodePort=30080 --set ingress.enabled=true --set ingress.hosts[0]=gh-actions-test.local --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx --set ingress.annotations."cert-manager\.io/cluster-issuer"
-             
+          helm upgrade --install gh-actions-test ./helm/nginx-v02 --namespace gh-actions-test
+              
